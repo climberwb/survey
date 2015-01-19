@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <% @count = 0 %>
+  <p>Please indicate which option you believe is the best from the three options presented below: two different chocolates and no purchase. After you have selected the best option, please indicate which option is the second best. Your first pick will be in green and your second pick will make the backgorund yellow.</p>
+
   <%= f.fields_for :scenario_responses do |sp| %>
     <%= sp.hidden_field :duration %> <!-- sp.label -->
     <%= sp.hidden_field :duration, id: "duration-#{sp.object.scenario}" %>
@@ -20,7 +23,9 @@
     <%= sp.hidden_field :second_choice %>
     <%= sp.hidden_field :second_choice, id: "Choice-#{sp.object.scenario}-2"  %>
       </br>
-
+      
+      <% @count= @count+1 %>
+      <span style='margin-left:40px'><strong>Scenario <%=@count %>:</strong></span>
       <ul id=<%="optionList-#{sp.object.scenario}" %>><button type="button" id=<%="Button-#{sp.object.scenario}" %>>Change Choices</button>
         <% ScenarioResponse::SCENARIOS[sp.object.scenario].each do |opt| %>
           <li style = " list-style: none;padding:0px; width:300px;" id='<%="option-#{sp.object.scenario}-#{opt.second.to_s}"%>'><%= opt.first %>
