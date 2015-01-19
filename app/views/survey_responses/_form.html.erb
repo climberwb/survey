@@ -1,0 +1,37 @@
+<%= form_for(@survey_response) do |f| %>
+  <% if @survey_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey_response.errors.count, "error") %> prohibited this survey_response from being saved:</h2>
+
+      <ul>
+      <% @survey_response.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.fields_for :scenario_responses do |sp| %>
+    <%= sp.hidden_field :duration %> <!-- sp.label -->
+    <%= sp.hidden_field :duration, id: "duration-#{sp.object.scenario}" %>
+    <%= sp.hidden_field :scenario %>
+    <%= sp.hidden_field :scenario %>
+    <%= sp.hidden_field :first_choice %>
+    <%= sp.hidden_field :first_choice, id: "Choice-#{sp.object.scenario}-1"  %>
+    <%= sp.hidden_field :second_choice %>
+    <%= sp.hidden_field :second_choice, id: "Choice-#{sp.object.scenario}-2"  %>
+      </br>
+
+      <ul id=<%="optionList-#{sp.object.scenario}" %>><button type="button" id=<%="Button-#{sp.object.scenario}" %>>Change Choices</button>
+        <% ScenarioResponse::SCENARIOS[sp.object.scenario].each do |opt| %>
+          <li style = " list-style: none;padding:0px; width:300px;" id='<%="option-#{sp.object.scenario}-#{opt.second.to_s}"%>'><%= opt.first %>
+            
+          </li>
+        <% end %>  
+      </ul>  
+    <br/>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

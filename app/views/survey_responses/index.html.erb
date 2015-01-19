@@ -1,0 +1,57 @@
+<h1>Listing survey responses and total results</h1>
+
+<table style ="border-style:solid">
+  <thead>
+    <tr>
+      <th style ="border-style:solid" colspan="1">total #  with popular 1st choice</th>
+      <th style ="border-style:solid" colspan="1">total #  with popular 2nd choice</th>
+      <th style ="border-style:solid"colspan="1">total #  with popular 3rd choice</th>
+    </tr>
+  </thead>
+
+  <tbody >
+    
+      <tr>
+        <td style ="border-style:solid"> <%= "#{@first_choice.first} type of chocolate for #{@first_choice.second} surveys"%></td>
+        <td style ="border-style:solid"> <%= "#{@second_choice.first} type of chocolate for #{@second_choice.second} surveys"%> </td>
+        <td style ="border-style:solid"> <%= "#{@third_choice.first} type of chocolate for #{@third_choice.second} surveys"%> </td>
+      </tr>
+  </tbody>
+</table>
+</br>
+<table style ="border-style:solid">
+  <tbody >
+     <tr>
+      <th colspan="1">list of first popular choice items:  </th>
+      <th colspan="1">  # of people</th>
+    </tr>
+      <tr><td>people who prefer dark:</td> <td><%= @dark_chocolate_count%></td></tr>
+      <tr><td>people who prefer milk:</td> <td><%= @milk_chocolate_count%></td></tr>
+      <tr><td>people who don't want chocolate:</td> <td><%= @no_purchase_count%></td></tr>
+  </tbody>
+<table >
+</br>
+<table style ="border-style:solid">
+  <thead>
+    <tr>
+      <th colspan="1">id</th>
+      <th colspan="1">popular 1st choice</th>
+      <th colspan="1">popular 2nd choice</th>
+    </tr>
+  </thead>
+
+  <tbody >
+    <% @survey_responses.each do |survey_response| %>
+      <tr>
+        <td style ="border-style:solid">  <%= survey_response.id%>   </td>
+        <td style ="border-style:solid"> <%= survey_response.preferred_choice(0)%>  </td>
+        <td style ="border-style:solid"> <%= survey_response.preferred_choice(1)%> </td>
+        <td style ="border-style:solid"><%= link_to 'Destroy', survey_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Survey response', new_survey_response_path %>

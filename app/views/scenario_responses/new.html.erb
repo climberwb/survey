@@ -1,0 +1,16 @@
+<h1>New scenario_response</h1>
+<table>
+  <tbody style = ''>
+    <%@scenarios.each do |scenario| %> 
+          <tr>
+              <%scenario.each do |option| %>
+                 <td><%= option%></td>
+              <%end%>
+           </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', scenario_responses_path %>

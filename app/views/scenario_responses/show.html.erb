@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @scenario_response.duration %>
+</p>
+
+<p>
+  <strong>Survery response:</strong>
+  <%= @scenario_response.survey_response %>
+</p>
+
+<p>
+  <strong>Scenario:</strong>
+  <%= @scenario_response.scenario %>
+</p>
+
+<p>
+  <strong>First choice:</strong>
+  <%= @scenario_response.first_choice %>
+</p>
+
+<p>
+  <strong>Second choice:</strong>
+  <%= @scenario_response.second_choice %>
+</p>
+
+<%= link_to 'Edit', edit_scenario_response_path(@scenario_response) %> |
+<%= link_to 'Back', scenario_responses_path %>

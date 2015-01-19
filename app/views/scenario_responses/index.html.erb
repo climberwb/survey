@@ -1,0 +1,33 @@
+<h1>Listing scenario_responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Duration</th>
+      <th>Survery response</th>
+      <th>Scenario</th>
+      <th>First choice</th>
+      <th>Second choice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scenario_responses.each do |scenario_response| %>
+      <tr>
+        <td><%= scenario_response.duration %></td>
+        <td><%= scenario_response.survery_response %></td>
+        <td><%= scenario_response.scenario %></td>
+        <td><%= scenario_response.first_choice %></td>
+        <td><%= scenario_response.second_choice %></td>
+        <td><%= link_to 'Show', scenario_response %></td>
+        <td><%= link_to 'Edit', edit_scenario_response_path(scenario_response) %></td>
+        <td><%= link_to 'Destroy', scenario_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scenario response', new_scenario_response_path %>
